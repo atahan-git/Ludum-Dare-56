@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class DataSaverMono : MonoBehaviour
@@ -12,24 +11,14 @@ public class DataSaverMono : MonoBehaviour
         // So that we don't lose our copy of the save file.
         if (DataSaver.s == null) {
             DataSaver.s = myDataSaver;
-            myDataSaver.Load();
         } else {
             myDataSaver = DataSaver.s;
         }
+
+        myDataSaver.Load();
     }
 
     private void Start() {
         print("Save Location:" + Application.persistentDataPath);
-    }
-
-
-    [Button]
-    void Save() {
-        myDataSaver.SaveActiveGame();
-    }
-
-    [Button]
-    void Load() {
-        myDataSaver.Load();
     }
 }

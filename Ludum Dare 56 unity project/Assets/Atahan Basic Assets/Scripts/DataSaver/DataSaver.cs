@@ -5,49 +5,45 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FullSerializer;
-using Sirenix.Serialization;
 
 [Serializable]
 public class DataSaver {
+
 	public static DataSaver s;
 
-	[SerializeField]
-	private SaveFile activeSave;
-	const string saveName = "save.data";
-	const DataFormat saveFormat = DataFormat.JSON;
-
+	public SaveFile mySave;
+	public const string saveName = "mySave.data";
 	
-	public bool loadingComplete = false;
-	public ScriptableObjectReferenceCache cache;
+	private static readonly fsSerializer _serializer = new fsSerializer();
 
-	public string GetSaveFilePathAndFileName () {
-		return Application.persistentDataPath + "/" + saveName;
+	public string saveFilePathAndFileName {
+		get { return Application.persistentDataPath + "/" + saveName; }
 	}
-
 	public delegate void SaveYourself ();
 	public static event SaveYourself earlyLoadEvent;
 	public static event SaveYourself loadEvent;
 	public static event SaveYourself earlySaveEvent;
 	public static event SaveYourself saveEvent;
 
-	public SaveFile GetCurrentSave() {
-		return activeSave;
+
+	public SaveFile GetSave() {
+		return mySave;
 	}
 
-	public void ClearCurrentSave() {
+	public void ClearSave() {
 		Debug.Log("Clearing Save");
-		activeSave = MakeNewSaveFile();
+		mySave = new SaveFile();
+		OnNewSave();
 	}
 	
-	public SaveFile MakeNewSaveFile() {
-		var file = new SaveFile();
-		file.isRealSaveFile = true;
-		return file;
+	public void OnNewSave() {
+		mySave = new SaveFile();
+		mySave.isRealSaveFile = true;
 	}
 
 
 	public bool dontSave = false;
-	public void SaveActiveGame () {
+	public void SaveGame () {
 		if (!dontSave) {
 			earlySaveEvent?.Invoke();
 			saveEvent?.Invoke();
@@ -55,71 +51,67 @@ public class DataSaver {
 		}
 	}
 
-	void Save() {
-		var path = GetSaveFilePathAndFileName();
+	void Save () {
+		StreamWriter writer = new StreamWriter(saveFilePathAndFileName);
+		
+		mySave.isRealSaveFile = true;
+		SaveFile data = mySave;
 
-		activeSave.isRealSaveFile = true;
-		SaveFile data = activeSave;
+		fsData serialized;
+		_serializer.TrySerialize(data, out serialized);
+		var json = fsJsonPrinter.CompressedJson(serialized);
 		
-		WriteFile(path, data);
-	}
-	
-	public void WriteFile(string path, object file) {
-		Directory.CreateDirectory(Path.GetDirectoryName(path));
+		writer.Write(json);
+		writer.Close();
 		
-		var context = new SerializationContext
-		{
-			StringReferenceResolver = cache
-		};
-		
-		var bytes = SerializationUtility.SerializeValue(file, saveFormat, context);
-		File.WriteAllBytes(path,bytes);
-		
-		Debug.Log($"IO OP: file \"{file.GetType()}\" saved to \"{path}\"");
+		Debug.Log("Data Saved to " + saveFilePathAndFileName);
 	}
 
-
-	public void Load () {
-		if (loadingComplete) {
-			return;
+	public bool Load () {
+		if (mySave.isRealSaveFile) {
+			return true;
 		}
-
-		var path = GetSaveFilePathAndFileName();
 		try {
-			if (File.Exists(path)) {
-				activeSave = ReadFile<SaveFile>(path);
+			if (File.Exists(saveFilePathAndFileName)) {
+				
+				StreamReader reader = new StreamReader(saveFilePathAndFileName); 
+				var json = reader.ReadToEnd();
+				reader.Close();
+				
+				fsData serialized = fsJsonParser.Parse(json);
+
+				_serializer.TryDeserialize(serialized, ref mySave).AssertSuccessWithoutWarnings();
+
+				return true;
 			} else {
-				Debug.Log($"No Save Data Found");
-				activeSave = MakeNewSaveFile();
+				Debug.Log("No Data Found");
+				OnNewSave();
+				return false;
 			}
 		} catch {
-			File.Delete(path);
+			File.Delete(saveFilePathAndFileName );
 			Debug.Log("Corrupt Data Deleted");
-			activeSave = MakeNewSaveFile();
+			OnNewSave();
+			
+			return false;
 		}
-
+		
 		earlyLoadEvent?.Invoke();
 		loadEvent?.Invoke();
-		loadingComplete = true;
 	}
 
-	public T ReadFile<T>(string path) where T : class, new() {
-
-		var context = new DeserializationContext()
-		{
-			StringReferenceResolver = cache
-		};
-
-		var bytes = File.ReadAllBytes(path);
-		var file = SerializationUtility.DeserializeValue<T>(bytes, saveFormat, context);
-		
-		Debug.Log($"IO OP: file \"{file.GetType()}\" read from \"{path}\"");
-		return file;
+	public void DeleteSave () {
+		Debug.Log("Deleting Save File at " + saveFilePathAndFileName);
+		File.Delete(saveFilePathAndFileName);
+		mySave = new SaveFile();
+		OnNewSave();
 	}
 
-
-	[Serializable]
+	[System.Serializable]
 	public class SaveFile {
 		public bool isRealSaveFile = false;
+
 	}
+
+	
 }
