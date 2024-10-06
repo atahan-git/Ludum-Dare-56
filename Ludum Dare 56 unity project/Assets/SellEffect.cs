@@ -11,12 +11,15 @@ public class SellEffect : MonoBehaviour {
     public TMP_Text sellText;
     public void SetUp(int sellPrice) {
         sellText.text = $"+${sellPrice}";
+        aliveTime = -0.5f;
     }
 
     private float aliveTime;
     private void Update() {
         aliveTime += Time.deltaTime;
-        aliveTime *= 1.1f;
+        if (aliveTime > 0f) {
+            aliveTime *= 1.1f;
+        }
         moveUpThing.transform.position = Vector3.MoveTowards(moveUpThing.transform.position, GameMaster.s.fundsGoLocation.position, aliveTime*Time.deltaTime);
     }
 }

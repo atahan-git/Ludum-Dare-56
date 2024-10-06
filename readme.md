@@ -1,6 +1,6 @@
 Atahan's Ludum Dare 56 entry!
 
-Play on itch (web + windows)
+Play on itch (web + windows) [todo add link]
 
 # Game Instructions
 Your goal is to get $5000000 
