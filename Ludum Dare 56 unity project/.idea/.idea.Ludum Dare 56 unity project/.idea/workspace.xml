@@ -5,48 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="422ce223-5516-4d88-b6cd-b5c41afbfd9a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Blob material.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Blob material.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CardInfoScriptable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CardInfoScriptable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CardScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CardScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CreatureScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CreatureScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food Card.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food Card.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FoodScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FoodScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MarketController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MarketController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/button.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/button.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/create blob.aseprite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/create blob.aseprite.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/palette.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/palette.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR Outline 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR Outline 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR normal.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR normal.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Create Blob.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Create Blob.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Merge.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Cards/Merge.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Sell blob.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Cards/Sell blob.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Creatures/red 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Creatures/red 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Creatures/red 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Creatures/red 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Tokens/Food.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Tokens/Food.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Tokens/MergeToken.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Tokens/MergeToken.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Tokens/Sell Token.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Tokens/Sell Token.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/food card base.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/food card base.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/special card base.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/special card base.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/special card.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/special card.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/utility card base.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/utility card base.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/utility card.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/utility card.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-Balanced.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-Balanced.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +53,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../_builds/Blob Farmer Win\Ludum Dare 56 Atahan.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\_Unity\2024\Ludum-dare-56\_builds\Blob Farmer Win" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:\Program Files\UnityEditors\2021.3.15f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
@@ -108,10 +79,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="37140">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="37140" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -129,7 +100,7 @@
       <updated>1728079186408</updated>
       <workItem from="1728079205504" duration="20435000" />
       <workItem from="1728148536441" duration="20615000" />
-      <workItem from="1728178166736" duration="20013000" />
+      <workItem from="1728178166736" duration="20739000" />
     </task>
     <servers />
   </component>
@@ -149,5 +120,76 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
+          <line>34</line>
+          <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="34" containingFunctionPresentation="method 'BuyCard'">
+            <startOffsets>
+              <option value="793" />
+            </startOffsets>
+            <endOffsets>
+              <option value="821" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
+          <line>36</line>
+          <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="36" containingFunctionPresentation="method 'BuyCard'">
+            <startOffsets>
+              <option value="836" />
+            </startOffsets>
+            <endOffsets>
+              <option value="868" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
+          <line>40</line>
+          <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="40" containingFunctionPresentation="method 'BuyCard'">
+            <startOffsets>
+              <option value="887" />
+            </startOffsets>
+            <endOffsets>
+              <option value="917" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
+          <line>42</line>
+          <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="42" containingFunctionPresentation="method 'BuyCard'">
+            <startOffsets>
+              <option value="947" />
+            </startOffsets>
+            <endOffsets>
+              <option value="984" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
+          <line>44</line>
+          <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="44" containingFunctionPresentation="method 'BuyCard'">
+            <startOffsets>
+              <option value="990" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1025" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

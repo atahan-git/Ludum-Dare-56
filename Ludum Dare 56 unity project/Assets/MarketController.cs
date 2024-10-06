@@ -61,7 +61,7 @@ public class MarketController : MonoBehaviour {
             Destroy(child.gameObject);
         }
         
-        Destroy(cardRemoveCardParent.GetChild(0));
+        Destroy(cardRemoveCardParent.GetChild(0).gameObject);
         Instantiate(shopCard, cardRemoveCardParent).GetComponent<ShopCard>().SetUp(cardRemoveCard, Mathf.CeilToInt(baseCost*Random.Range(0.9f,1.1f)));
 
 
