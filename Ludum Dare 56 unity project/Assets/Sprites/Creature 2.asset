@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526c4378aa0b9e7458a9c6dea70cb4a1, type: 3}
+  m_Name: Creature 2
+  m_EditorClassIdentifier: 
+  baseLayer:
+  - {fileID: -3422422132907224354, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  - {fileID: -5003484892104002393, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  hungerSprites:
+  - {fileID: 7514297975465633990, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  - {fileID: 3473327735254948202, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  - {fileID: 7358109176153454190, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  - {fileID: 4165981025913335853, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  - {fileID: 1704696884794138830, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  angry: {fileID: -9025668520738308768, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  eating: {fileID: 2078980104832661268, guid: abaf121f49022034f9d8dca6983cb5c0, type: 3}
+  wantingToMerge: {fileID: -4184156131914304928, guid: abaf121f49022034f9d8dca6983cb5c0,
+    type: 3}
+  sleeping: {fileID: -3433047059322106109, guid: abaf121f49022034f9d8dca6983cb5c0,
+    type: 3}

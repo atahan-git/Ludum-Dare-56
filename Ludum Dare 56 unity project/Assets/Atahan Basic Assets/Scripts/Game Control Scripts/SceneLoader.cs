@@ -29,6 +29,7 @@ public class SceneLoader : MonoBehaviour {
     public bool isProfileMenu = true;
     
     private void Awake() {
+        return;
         if (s == null) {
             s = this;
             DontDestroyOnLoad(gameObject);
