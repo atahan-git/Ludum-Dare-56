@@ -16,5 +16,6 @@ MonoBehaviour:
   mainSprite: {fileID: -8845681193167945681, guid: 44dcd0242327e704292aaeea6f35fca1,
     type: 3}
   description: Create 1 merge token. Bigger blobs eat more and sell for more
+  manaCost: 2
   myType: 1
   myBase: 2

@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteBase: {fileID: 7308907385444386047}
   isTaken: 0
+  myType: 0
 --- !u!65 &2991543306525494438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,7 +108,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25, z: 0.25}
-  m_Center: {x: 0.05, y: 0.19, z: 0.05}
+  m_Center: {x: 0.05, y: 0.125, z: 0.05}
 --- !u!54 &1788733295066097383
 Rigidbody:
   m_ObjectHideFlags: 0

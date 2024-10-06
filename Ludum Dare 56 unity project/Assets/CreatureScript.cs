@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -20,6 +21,11 @@ public class CreatureScript : MonoBehaviour {
     public SpriteRenderer faceSprite;
     public GameObject deathEffect;
     public GameObject hungerEffect;
+
+    public float myMultiplier = 1f;
+    public TMP_Text multiplierText;
+    
+    public TMP_Text valueText;
     void Start() {
         _agent = GetComponent<NavMeshAgent>();
         state = State.chilling;
@@ -54,7 +60,14 @@ public class CreatureScript : MonoBehaviour {
     private GameObject potentialMerge;
 
     public bool isSleeping = false;
+    public int eatBlock =0;
 
+    public enum BlopType {
+        red=0, blue=1, white=2, green=3, purple=4, cat=5, mana=6
+    }
+
+    public BlopType myType;
+    
     public void SetSleepState(bool _isSleeping) {
         isSleeping = _isSleeping;
         _agent.enabled = !isSleeping;
@@ -67,6 +80,17 @@ public class CreatureScript : MonoBehaviour {
         if (isSleeping) {
             return;
         }
+
+        if (myType == BlopType.cat) {
+            eatBlock = 10;
+        }
+
+        satiationLevel = Mathf.Clamp(satiationLevel, 0, 3 + satiationLossPerStep);
+        
+        multiplierText.text = $"x{myMultiplier:F2}";
+        multiplierText.gameObject.SetActive(GameMaster.s.showValue && Math.Abs(myMultiplier - 1) > 0.05f);
+        valueText.text = $"${blopSellPrice}";
+        valueText.gameObject.SetActive(GameMaster.s.showValue);
 
         reachedDestination = ReachedDestination();
 
@@ -110,6 +134,7 @@ public class CreatureScript : MonoBehaviour {
                             Destroy(potentialYummy.GetComponent<Rigidbody>());
                             state = State.eating;
                             GameMaster.s.moveNextBlock += 1;
+                            eatBlock += 1;
                             _agent.SetDestination(transform.position);
                             eatPercent = -0.5f;
                             eatStartPos = potentialYummy.transform.position;
@@ -183,18 +208,24 @@ public class CreatureScript : MonoBehaviour {
                     var selfAdjustedPos = transform.position;
                     selfAdjustedPos.y = 0;
                     if (Vector3.Distance(selfAdjustedPos, foodAdjustedPos) < 0.9f) {
-                        if (potentialMerge.GetComponent<CreatureScript>() == null) {
+                        var creature = potentialMerge.GetComponent<CreatureScript>();
+                        if (creature == null || creature.eatBlock > 0) {
                             potentialMerge = null;
                             state = State.findingMergeTarget;
                             angry = Random.Range(1,2f);
                             chillTime = angry;
                             _agent.SetDestination(transform.position);
                         } else {
+                            if (myType == BlopType.blue) {
+                                blopSellPrice += potentialMerge.GetComponent<CreatureScript>().blopSellPrice;
+                            }
+                            
                             Destroy(potentialMerge.GetComponent<Rigidbody>());
                             Destroy(potentialMerge.GetComponent<CreatureScript>());
                             Destroy(potentialMerge.GetComponent<NavMeshAgent>());
                             state = State.merging;
                             GameMaster.s.moveNextBlock += 1;
+                            eatBlock += 1;
                             _agent.SetDestination(transform.position);
                             eatPercent = -0.5f;
                             eatStartPos = potentialMerge.transform.position;
@@ -224,15 +255,21 @@ public class CreatureScript : MonoBehaviour {
                 yummyTargetPos.y = Mathf.Sin(realEatPercent * Mathf.PI) + eatStartPos.y*(1-eatPercent);
                 potentialMerge.transform.position = yummyTargetPos;
                 if (realEatPercent>=1) {
-                    Destroy(potentialMerge.gameObject);
-                    potentialMerge = null;
-                    GameMaster.s.moveNextBlock -= 1;
-                    
                     Instantiate(deathEffect, transform.position, transform.rotation);
                     var result = Instantiate(mergeResult, transform.position, transform.rotation, transform.parent);
                     result.GetComponent<CreatureScript>().satiationLevel = satiationLevel;
+                    result.GetComponent<CreatureScript>().myMultiplier = myMultiplier;
+                    if (myType == BlopType.blue) {
+                        result.GetComponent<CreatureScript>().blopSellPrice = blopSellPrice*2;
+                    }
                     GameMaster.s.blobsMade += 1;
+                    
                     Destroy(gameObject);
+                    Destroy(potentialMerge.gameObject);
+                    potentialMerge = null;
+
+                    GameMaster.s.moveNextBlock -= 1;
+                    eatBlock -= 1;
                 }
 
                 break;
@@ -284,29 +321,155 @@ public class CreatureScript : MonoBehaviour {
         faceSprite.transform.localRotation = Quaternion.Euler(0,0,lookZ);
     }
 
+    public bool isDrugged = false;
     private void FinishEating() {
+        var prevSatLevel = satiationLevel;
         switch (potentialYummy.myType) {
-            case FoodScript.FoodType.food:
+            case FoodScript.FoodType.food: {
                 satiationLevel += 1;
                 state = State.chilling;
                 break;
-            case FoodScript.FoodType.merge:
+            }
+            case FoodScript.FoodType.merge: {
                 state = State.findingMergeTarget;
                 chillTime = 0.5f;
                 break;
-            case FoodScript.FoodType.sell:
+            }
+            case FoodScript.FoodType.sell: {
                 GameMaster.s.blobsSold += 1;
                 GameMaster.s.money += blopSellPrice;
                 Instantiate(blopSoldEffect, transform.position, Quaternion.identity).GetComponent<SellEffect>().SetUp(blopSellPrice);
                 Destroy(gameObject);
                 break;
+            }
+            case FoodScript.FoodType.butcher: {
+                GameMaster.s.blobsDied += 1;
+                for (int i = 0; i < 3; i++) {
+                    Instantiate(PlayerInteractor.s.blopChunksToken, transform.position+Vector3.up*((i+1)*0.05f), Quaternion.identity);
+                }
+                Instantiate(deathEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                break;
+            }
+            case FoodScript.FoodType.carrot:{
+                satiationLevel += 1;
+                state = State.chilling;
+                myMultiplier *= 1.5f;
+                break;
+            }
+            case FoodScript.FoodType.bloodMoney:
+                GameMaster.s.blobsDied += 1;
+                Instantiate(deathEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                GameMaster.s.money *= 2;
+                break;
+            case FoodScript.FoodType.marketing:
+                blopSellPrice += 10;
+                state = State.chilling;
+                break;
+            case FoodScript.FoodType.berry:
+                satiationLevel += 1;
+                state = State.chilling;
+                myMultiplier *= 2f;
+                break;
+            case FoodScript.FoodType.tripleBurger: {
+                var result = Instantiate(mergeResult, transform.position, transform.rotation, transform.parent);
+                result.GetComponent<CreatureScript>().satiationLevel = 1000;
+                result.GetComponent<CreatureScript>().myMultiplier = myMultiplier;
+                GameMaster.s.blobsMade += 1;
+                Destroy(gameObject);
+                break;
+            }
+            case FoodScript.FoodType.steak:
+                satiationLevel += 2;
+                state = State.chilling;
+                myMultiplier *= 3f;
+                break;
+            case FoodScript.FoodType.potato:
+                satiationLevel += 2;
+                state = State.chilling;
+                myMultiplier *= 2f;
+                break;
+            case FoodScript.FoodType.drugs:
+                isDrugged = true;
+                satiationLevel = 10000;
+                state = State.chilling;
+                break;
+            case FoodScript.FoodType.hormones:
+                if (Random.value < 0.5f) {
+                    myMultiplier *= 10f;
+                    state = State.chilling;
+                } else {
+                    Die();
+                }
+                break;
+            case FoodScript.FoodType.mitosis: {
+                satiationLevel = 0;
+                var result = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+                result.GetComponent<CreatureScript>().potentialYummy = null;
+                result.GetComponent<CreatureScript>().state = State.chilling;
+                result.GetComponent<CreatureScript>().eatBlock -= 1;
+                GameMaster.s.blobsMade += 1;
+                state = State.chilling;
+                break;
+            }
+            case FoodScript.FoodType.transmute: {
+                var random = Random.Range(0, 7);
+                GameObject result;
+                switch (random) {
+                    case 0:
+                    default:
+                        result = Instantiate(PlayerInteractor.s.redBlob, transform.position, transform.rotation, transform.parent);
+                        break;
+                    case 1:
+                        result = Instantiate(PlayerInteractor.s.blueBlop, transform.position, transform.rotation, transform.parent);
+                        break;
+                    case 2:
+                        result = Instantiate(PlayerInteractor.s.greenBlop, transform.position, transform.rotation, transform.parent);
+                        break;
+                    case 3:
+                        result = Instantiate(PlayerInteractor.s.whiteBlop, transform.position, transform.rotation, transform.parent);
+                        break;
+                    case 4:
+                        result = Instantiate(PlayerInteractor.s.catBlop, transform.position, transform.rotation, transform.parent);
+                        break;
+                    case 5:
+                        result = Instantiate(PlayerInteractor.s.manaBlop, transform.position, transform.rotation, transform.parent);
+                        break;
+                    case 6:
+                        result = Instantiate(PlayerInteractor.s.purpleBlop, transform.position, transform.rotation, transform.parent);
+                        break;
+                }
+                
+                result.GetComponent<CreatureScript>().satiationLevel = satiationLevel;
+                result.GetComponent<CreatureScript>().myMultiplier = myMultiplier;
+                Destroy(gameObject);
+                break;
+            }
             default:
                 throw new ArgumentOutOfRangeException();
+        }
+
+        if (myType == BlopType.purple) {
+            if (satiationLevel > prevSatLevel) {
+                if (GetVisualHungerLevel() > 3) {
+                    var maxSat = 3 + satiationLossPerStep;
+                    
+                    satiationLevel = maxSat - 1;
+                    
+                    var result = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+                    result.GetComponent<CreatureScript>().potentialYummy = null;
+                    result.GetComponent<CreatureScript>().state = State.chilling;
+                    result.GetComponent<CreatureScript>().eatBlock -= 1;
+                    GameMaster.s.blobsMade += 1;
+                }
+            }
         }
         
         Destroy(potentialYummy.gameObject);
         potentialYummy = null;
         GameMaster.s.moveNextBlock -= 1;
+        eatBlock -= 1;
     }
 
 
@@ -316,19 +479,34 @@ public class CreatureScript : MonoBehaviour {
     }
 
     public void GoToNextStep() {
-        
-        satiationLevel -= satiationLossPerStep;
+        if (myType == BlopType.green) {
+            satiationLevel = 10000;
+            for (int i = 0; i < Mathf.Pow(size,2); i++) {
+                Instantiate(PlayerInteractor.s.foodToken, transform.position, transform.rotation);
+            }
 
-        if (satiationLevel < 0) {
-            isAlive = false;
-            Instantiate(deathEffect, transform.position, transform.rotation);
-            GameMaster.s.blobsDied += 1;
-            Destroy(gameObject);
         } else {
-            for (int i = 0; i < satiationLossPerStep; i++) {
-                Instantiate(hungerEffect, transform.position, transform.rotation);
+            satiationLevel -= satiationLossPerStep;
+
+            if (satiationLevel < 0) {
+                Die();
+            } else {
+                for (int i = 0; i < satiationLossPerStep; i++) {
+                    Instantiate(hungerEffect, transform.position, transform.rotation);
+                }
+            }
+
+            if (isDrugged) {
+                satiationLevel = 0;
             }
         }
+    }
+
+    void Die() {
+        isAlive = false;
+        Instantiate(deathEffect, transform.position, transform.rotation);
+        GameMaster.s.blobsDied += 1;
+        Destroy(gameObject);
     }
 
     void _Walk(Vector3 location) {
@@ -358,18 +536,36 @@ public class CreatureScript : MonoBehaviour {
         
         var canEat = true;
         switch (foodScript.myType) {
-            case FoodScript.FoodType.food:
+            case FoodScript.FoodType.carrot:
+            case FoodScript.FoodType.berry:
+            case FoodScript.FoodType.steak:
+            case FoodScript.FoodType.potato:
+            case FoodScript.FoodType.drugs:
+            case FoodScript.FoodType.food: {
                 if (satiationLevel >= maxSatiation) {
                     canEat = false;
                 }
                 break;
-            case FoodScript.FoodType.merge:
+            }
+            case FoodScript.FoodType.merge: {
                 if (satiationLevel <= 0 || mergeResult == null) {
                     canEat = false;
                 }
                 break;
+            }
             case FoodScript.FoodType.sell:
-                // can always sell!
+            case FoodScript.FoodType.butcher:
+            case FoodScript.FoodType.bloodMoney:
+            case FoodScript.FoodType.hormones:
+            case FoodScript.FoodType.mitosis:
+            case FoodScript.FoodType.transmute:
+            case FoodScript.FoodType.marketing:
+                // can always do these
+                break;
+            case FoodScript.FoodType.tripleBurger:
+                if (mergeResult == null) {
+                    canEat = false;
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

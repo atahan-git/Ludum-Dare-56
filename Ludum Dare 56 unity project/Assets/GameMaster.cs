@@ -29,7 +29,7 @@ public class GameMaster : MonoBehaviour {
     public TMP_Text statsText;
     public Light mainLight;
 
-    public int money = 0;
+    public int money = 10;
     public int timeOfDay = 8; // goes from 8 to 20
     public int timeIncrement = 3; // make sure divides 12
 
@@ -45,6 +45,14 @@ public class GameMaster : MonoBehaviour {
     public int foodMade = 0;
 
     public TMP_Text youWonStatsText;
+
+    public bool showValue = false;
+
+    private void Start() {
+        money = 10;
+        showValue = true;
+    }
+
     private void Update() {
         if (!isWon && money > 5000000) {
             isWon = true;
@@ -61,9 +69,9 @@ public class GameMaster : MonoBehaviour {
 
 
         if (isNight) {
-            mainLight.colorTemperature = Mathf.Lerp(mainLight.colorTemperature, 20000, 20*Time.deltaTime);
+            mainLight.colorTemperature = Mathf.Lerp(mainLight.colorTemperature, 20000f, 2f*Time.deltaTime);
         } else {
-            mainLight.colorTemperature = Mathf.Lerp(mainLight.colorTemperature, 5000, 20*Time.deltaTime);
+            mainLight.colorTemperature = Mathf.Lerp(mainLight.colorTemperature, 5000f, 2f*Time.deltaTime);
         }
         
         moveNextButton.interactable = !NextTurnBlocked();
@@ -86,7 +94,7 @@ public class GameMaster : MonoBehaviour {
         
         statsText.text = $"Funds:${money}\n" +
                               $"Goal:$5 million!\n" +
-                              $"Time:{timeOfDay}\n" +
+                              $"Time:{timeOfDay}:00\n" +
                               $"Market at 20:00\n" +
                               $"Day:{currentDay}";
     }
@@ -105,9 +113,7 @@ public class GameMaster : MonoBehaviour {
         }
 
         var playerInteractor = GetComponent<PlayerInteractor>();
-        for (int i = 0; i < playerInteractor.perStepDraw; i++) {
-            playerInteractor.DrawCardFromDeck();
-        }
+        playerInteractor.NextStep();
 
         if (timeOfDay >= 20) {
             OpenMarket();
@@ -134,6 +140,7 @@ public class GameMaster : MonoBehaviour {
         var allCreatures = GetComponentsInChildren<CreatureScript>();
         for (int i = 0; i < allCreatures.Length; i++) {
             allCreatures[i].SetSleepState(false);
+            allCreatures[i].myMultiplier = 1;
         }
     }
 
@@ -159,5 +166,16 @@ public class GameMaster : MonoBehaviour {
 
     public void HideYouWon() {
         youWon.SetActive(false);
+    }
+
+    public Image showValueButton;
+    public void ShowValue() {
+        showValue = !showValue;
+        if (showValue) {
+            showValueButton.color = Color.green;
+            
+        } else {
+            showValueButton.color = Color.white;
+        }
     }
 }

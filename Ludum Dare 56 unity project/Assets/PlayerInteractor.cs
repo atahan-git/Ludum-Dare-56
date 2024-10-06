@@ -12,33 +12,62 @@ public class PlayerInteractor : MonoBehaviour {
         s = this;
     }
 
-    public GameObject food;
+    public GameObject foodToken;
     public GameObject mergeToken;
     public GameObject sellToken;
+    public GameObject butcherToken;
+    public GameObject carrotToken;
+    public GameObject blopChunksToken;
+    public GameObject bloodMoneyToken;
+    public GameObject berryToken;
+    public GameObject marketingToken;
+    public GameObject tripleBurgerToken;
+    public GameObject steakToken;
+    public GameObject potatoToken;
+    public GameObject blopDrugToken;
+    public GameObject hormonesToken;
+    public GameObject mitosisToken;
+    public GameObject transmuteToken;
+    
+    
     public GameObject redBlob;
-    
-    
+    public GameObject blueBlop;
+    public GameObject whiteBlop;
+    public GameObject purpleBlop;
+    public GameObject greenBlop;
+    public GameObject catBlop;
+    public GameObject manaBlop;
+
     public GameObject clickEffect;
     
     
     public LayerMask table;
     public LayerMask cards;
+
+    public TMP_Text manaText;
+    public int curMana = 0;
     
     public enum CardType {
-        makeFoodBasic=0, mergeBlobsBasic=1, createRedBlobBasic=2, sellBlobBasic=3, drawCardBasic=4
+        makeFoodBasic=0, mergeBlobsBasic=1, createRedBlobBasic=2, sellBlobBasic=3, drawCardBasic=4, removeNextCard=5, butcher=6,
+        makeCarrot=7, bloodMoney=8, makeBerry=9, marketing=10, makeTripleBurger=11, makeSteak=12, makePotato=13,
+        makeBlueBlop=14, foodForMasses=15, blopHungerCards=16, blopDrugs=17, foodDraw=18, makeWhiteBlop=19, makePurpleBlop=20,
+        makeGreenBlop=21, illegalHormones=22, makeCatBlop=24, makeManaBlop=25, blopper=26, infrastructure=27,
+        heft=28, mitosis=29, transmute=30, photos=23
     }
     
     public enum CardGraphicBase {
-        food=0, utility=1, special=2
+        food=0, utility=1, special=2, sell=3
     }
 
     public Transform cardsParent;
     public GameObject[] cardPrefabs;
 
     public CardInfoScriptable[] startingHand;
+    public CardInfoScriptable[] testHand;
+    public bool doTestHand = true;
 
-    public int startDraw = 5;
-    public int perStepDraw = 2;
+    public int drawPerStep = 4;
+    public int manaPerStep = 3;
     
     public List<CardInfoScriptable> deck = new List<CardInfoScriptable>();
     public List<CardInfoScriptable> discard = new List<CardInfoScriptable>();
@@ -48,15 +77,83 @@ public class PlayerInteractor : MonoBehaviour {
 
     public TMP_Text deckCountText;
     public TMP_Text discardCountText;
+
+    public bool flashManaCost = false;
+    private Transform _manaParent;
     
     private void Start() {
         deck.AddRange(startingHand);
-        for (int i = 0; i < startDraw; i++) {
-            DrawCardFromDeck();
-        }
 
         mainCam = Camera.main;
         _targetShower = GetComponentInChildren<CardTargetShower>();
+        _manaParent = manaText.transform.parent;
+
+        if (Application.isEditor && doTestHand) {
+            for (int i = 0; i < testHand.Length; i++) {
+                AddCard(testHand[i]);
+            }
+            curMana = manaPerStep;
+        } else {
+            NextStep();
+        }
+    }
+
+
+    public void NextStep() {
+        StartCoroutine(_NextStep());
+    }
+
+    IEnumerator _NextStep() {
+        GameMaster.s.moveNextBlock += 1;
+        GameMaster.s.cardActionBlock += 1;
+        var count = currentCards.Count;
+        for (int i = 0; i < count; i++) {
+            var card = currentCards[0];
+            currentCards.Remove(card);
+            discard.Add(card.myInfo);
+            StartCoroutine(_CardAnimGoToDiscard(card.transform));
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        var thisDraw = drawPerStep;
+        var thisMana = manaPerStep;
+        var allCreatures = GameMaster.s.GetComponentsInChildren<CreatureScript>();
+        for (int i = 0; i < allCreatures.Length; i++) {
+            if (allCreatures[i].myType == CreatureScript.BlopType.cat) {
+                switch (allCreatures[i].size) {
+                    case 1:
+                        thisDraw += 1;
+                        break;
+                    case 2:
+                        thisDraw += 3;
+                        break;
+                    case 3:
+                        thisDraw += 8;
+                        break;
+                }
+            }else if (allCreatures[i].myType == CreatureScript.BlopType.mana) {
+                switch (allCreatures[i].size) {
+                    case 1:
+                        thisMana += 1;
+                        break;
+                    case 2:
+                        thisMana += 3;
+                        break;
+                    case 3:
+                        thisMana += 8;
+                        break;
+                }
+            }
+        }
+
+        for (int i = 0; i < thisDraw; i++) {
+            DrawCardFromDeck();
+        }
+
+        curMana = thisMana;
+
+        GameMaster.s.moveNextBlock -= 1;
+        GameMaster.s.cardActionBlock -= 1;
     }
 
     public int drawRemaining = 0;
@@ -122,10 +219,15 @@ public class PlayerInteractor : MonoBehaviour {
 
     void _AddCard(CardInfoScriptable cardInfoScriptable) {
         GameMaster.s.moveNextBlock -= 1;
-        var prefab = cardPrefabs[(int)cardInfoScriptable.myBase];
-        var newCard = Instantiate(prefab, cardsParent).GetComponent<CardScript>();
-        newCard.SetUp(cardInfoScriptable);
+        var newCard = MakeCard(cardInfoScriptable, cardsParent);
         currentCards.Add(newCard);
+    }
+
+    public CardScript MakeCard(CardInfoScriptable cardInfoScriptable, Transform parent) {
+        var prefab = cardPrefabs[(int)cardInfoScriptable.myBase];
+        var newCard = Instantiate(prefab, parent).GetComponent<CardScript>();
+        newCard.SetUp(cardInfoScriptable);
+        return newCard;
     }
 
     public List<CardInfoScriptable> addCardList = new List<CardInfoScriptable>();
@@ -140,8 +242,21 @@ public class PlayerInteractor : MonoBehaviour {
     void Update() {
         deckCountText.text = $"{deck.Count}";
         discardCountText.text = $"{discard.Count}";
+        manaText.text = $"{curMana}";
         Vector3 mousePos = Input.mousePosition;
         Vector3 normalizedMousePos = new Vector3(mousePos.x / Screen.width, mousePos.y / Screen.height);
+
+        if (flashManaCost) {
+            if (_manaParent.transform.localScale.x < 1.5f) {
+                _manaParent.transform.localScale = Vector3.MoveTowards(_manaParent.transform.localScale, Vector3.one*1.5f,5*Time.deltaTime);
+            } else {
+                flashManaCost = false;
+            }
+        } else {
+            if (_manaParent.transform.localScale.x > 1) {
+                _manaParent.transform.localScale = Vector3.MoveTowards(_manaParent.transform.localScale, Vector3.one,5*Time.deltaTime);
+            }
+        }
         
         if (addCardTimer <= 0) {
             if (!GameMaster.s.CardActionsBlocked() && addCardList.Count > 0) {
@@ -161,18 +276,24 @@ public class PlayerInteractor : MonoBehaviour {
 
             var currentCard = currentCards[curIndex];
             //cardTip=currentCard.transform.TransformPoint(cardTip);
-                
-            if (normalizedMousePos.magnitude < 0.33f || GameMaster.s.CardActionsBlocked()) {
-                _targetShower.Stop();
+
+            if (currentCard.myInfo.manaCost > curMana) {
                 castingLegalPosition = false;
+                flashManaCost = true;
+                nearCards = false;
             } else {
-                if (Physics.Raycast(ray, out hit, 100, table)) {
-                    lastCastPos = hit.point;
-                    _targetShower.ShowTarget(currentCard.transform, hit.point);
-                    castingLegalPosition = true;
+                if (normalizedMousePos.magnitude < 0.33f || GameMaster.s.CardActionsBlocked()) {
+                    _targetShower.Stop();
+                    castingLegalPosition = false;
+                } else {
+                    if (Physics.Raycast(ray, out hit, 100, table)) {
+                        lastCastPos = hit.point;
+                        _targetShower.ShowTarget(currentCard.transform, hit.point);
+                        castingLegalPosition = true;
+                    }
                 }
             }
-            
+
 
 
             if (!isDragging) {
@@ -279,20 +400,28 @@ public class PlayerInteractor : MonoBehaviour {
     void CastCardAtLocation(CardScript card, CardInfoScriptable info, Vector3 location) {
         StartCoroutine(_CastCardAtLocation(card, info, location));
     }
-    
+
+    public bool removeNextCard = false;
+    public GameObject removeCardEffect;
     IEnumerator _CastCardAtLocation(CardScript card, CardInfoScriptable info, Vector3 location) {
         GameMaster.s.moveNextBlock += 1;
         currentCards.Remove(card);
         var tipPos = GetCardTipPos(card.transform);
-        StartCoroutine(_CardAnimGoToDiscard(card.transform));
-        
-        discard.Add(info);
+        curMana -= info.manaCost;
+
+        if (removeNextCard || info.once) { //remove card
+            Instantiate(removeCardEffect, card.transform.position, card.transform.rotation);
+            Destroy(card.gameObject);
+        } else { // put it in discard
+            StartCoroutine(_CardAnimGoToDiscard(card.transform));
+            discard.Add(info);
+        }
         GameMaster.s.cardsPlayed += 1;
         
         switch (info.myType) {
             case CardType.makeFoodBasic: {
                 GameMaster.s.foodMade += 1;
-                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(food, tipPos, Quaternion.identity), tipPos));
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(foodToken, tipPos, Quaternion.identity), tipPos));
                 break;
             }
             case CardType.mergeBlobsBasic: {
@@ -311,6 +440,131 @@ public class PlayerInteractor : MonoBehaviour {
             case CardType.drawCardBasic:{
                 DrawCardFromDeck();
                 DrawCardFromDeck();
+                break;
+            }
+            case CardType.removeNextCard: {
+                removeNextCard = true;
+                break;
+            }
+            case CardType.butcher: {
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(butcherToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.makeCarrot: {
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(carrotToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.bloodMoney: {
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(bloodMoneyToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.makeBerry:{
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(berryToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.marketing:{
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(marketingToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.makeTripleBurger:{
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(tripleBurgerToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.makeSteak:{
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(steakToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.makePotato:{
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(potatoToken, tipPos, Quaternion.identity), tipPos));
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(potatoToken, tipPos+Vector3.left*0.5f, Quaternion.identity), tipPos));
+                break;
+            }
+            case CardType.makeBlueBlop:
+                GameMaster.s.blobsMade += 1;
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(blueBlop, tipPos, Quaternion.identity, GameMaster.s.creatureParent), tipPos));
+                break;
+            case CardType.foodForMasses: {
+                var allCreatures = GameMaster.s.GetComponentsInChildren<CreatureScript>();
+                for (int i = 0; i < allCreatures.Length; i++) {
+                    yield return StartCoroutine(YeetObjectToBoard(allCreatures[i].transform.position, Instantiate(foodToken, tipPos, Quaternion.identity), tipPos));
+                }
+                break;
+            }
+            case CardType.blopHungerCards:{
+                var allCreatures = GameMaster.s.GetComponentsInChildren<CreatureScript>();
+                for (int i = 0; i < allCreatures.Length; i++) {
+                    allCreatures[i].GoToNextStep();
+                    DrawCardFromDeck();
+                }
+                break;
+            }
+            case CardType.blopDrugs:
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(blopDrugToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            case CardType.foodDraw:
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(foodToken, tipPos, Quaternion.identity), tipPos));
+                DrawCardFromDeck();
+                break;
+            case CardType.makeWhiteBlop:
+                GameMaster.s.blobsMade += 1;
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(whiteBlop, tipPos, Quaternion.identity, GameMaster.s.creatureParent), tipPos));
+                break;
+            case CardType.makePurpleBlop:
+                GameMaster.s.blobsMade += 1;
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(purpleBlop, tipPos, Quaternion.identity, GameMaster.s.creatureParent), tipPos));
+                break;
+            case CardType.makeGreenBlop:
+                GameMaster.s.blobsMade += 1;
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(greenBlop, tipPos, Quaternion.identity, GameMaster.s.creatureParent), tipPos));
+                break;
+            case CardType.illegalHormones:
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(hormonesToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            case CardType.makeCatBlop:
+                GameMaster.s.blobsMade += 1;
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(catBlop, tipPos, Quaternion.identity, GameMaster.s.creatureParent), tipPos));
+                break;
+            case CardType.makeManaBlop:
+                GameMaster.s.blobsMade += 1;
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(manaBlop, tipPos, Quaternion.identity, GameMaster.s.creatureParent), tipPos));
+                break;
+            case CardType.blopper:
+                for (int i = 0; i < deck.Count; i++) {
+                    if (deck[i].myBase == CardGraphicBase.special) {
+                        yield return StartCoroutine(YeetObjectToBoard(location + Vector3.up*0.25f, Instantiate(foodToken, tipPos, Quaternion.identity), tipPos));
+                    }
+                }
+                break;
+            case CardType.infrastructure:
+                for (int i = 0; i < deck.Count; i++) {
+                    if (deck[i].myBase == CardGraphicBase.food) {
+                        yield return StartCoroutine(YeetObjectToBoard(location + Vector3.up*0.25f, Instantiate(foodToken, tipPos, Quaternion.identity), tipPos));
+                    }
+                }
+                break;
+            case CardType.heft:
+                for (int i = 0; i < deck.Count; i++) {
+                    if (i%5 == 0) {
+                        yield return StartCoroutine(YeetObjectToBoard(location + Vector3.up*0.25f, Instantiate(foodToken, tipPos, Quaternion.identity), tipPos));
+                    }
+                }
+                break;
+            case CardType.mitosis:
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(mitosisToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            case CardType.transmute:
+                yield return StartCoroutine(YeetObjectToBoard(location, Instantiate(transmuteToken, tipPos, Quaternion.identity), tipPos));
+                break;
+            case CardType.photos:{
+                var allCreatures = GameMaster.s.GetComponentsInChildren<CreatureScript>();
+                for (int i = 0; i < allCreatures.Length; i++) {
+                    var blop = allCreatures[i];
+                    if (blop.GetVisualHungerLevel() >= 3) {
+                        
+                        GameMaster.s.money += blop.blopSellPrice;
+                        Instantiate(blop.blopSoldEffect, blop.transform.position, Quaternion.identity).GetComponent<SellEffect>().SetUp(blop.blopSellPrice);
+                    }
+                }
                 break;
             }
             default:

@@ -6,11 +6,48 @@
   <component name="ChangeListManager">
     <list default="true" id="422ce223-5516-4d88-b6cd-b5c41afbfd9a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blob material.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blob material.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CardInfoScriptable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CardInfoScriptable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CardScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CardScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CreatureScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CreatureScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Food Card.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Food Card.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FoodScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FoodScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MarketController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MarketController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/version.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SellEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SellEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/button.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/button.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/create blob.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/create blob.aseprite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/palette.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/palette.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR Outline 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR Outline 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR normal.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/VCR normal.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Create Blob.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Create Blob.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Merge.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Cards/Merge.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Sell blob.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Cards/Sell blob.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Creatures/red 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Creatures/red 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Creatures/red 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Creatures/red 2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Tokens/Food.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Tokens/Food.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Tokens/MergeToken.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Tokens/MergeToken.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Tokens/Sell Token.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Tokens/Sell Token.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/food card base.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/food card base.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/special card base.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/special card base.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/special card.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/special card.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/utility card base.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/utility card base.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/utility card.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/utility card.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +65,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/FoodScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GameMaster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/MarketController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MerchantBlop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PlaneScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PlayerInteractor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SetRenderCam.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShopCard.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TimedObjectDestructor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.8/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -68,10 +108,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="37140">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="37140" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -89,6 +129,7 @@
       <updated>1728079186408</updated>
       <workItem from="1728079205504" duration="20435000" />
       <workItem from="1728148536441" duration="20615000" />
+      <workItem from="1728178166736" duration="20013000" />
     </task>
     <servers />
   </component>

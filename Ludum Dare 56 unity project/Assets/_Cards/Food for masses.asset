@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471a5764000467d42a110f111d8c7483, type: 3}
+  m_Name: Food for masses
+  m_EditorClassIdentifier: 
+  title: Food for masses
+  mainSprite: {fileID: 21300000, guid: 1cdebbe49205a0846a5f43ec6f79af65, type: 3}
+  description: Create 1 food per blop
+  manaCost: 2
+  myType: 15
+  myBase: 0
+  once: 0

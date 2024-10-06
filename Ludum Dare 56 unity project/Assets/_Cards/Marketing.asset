@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471a5764000467d42a110f111d8c7483, type: 3}
+  m_Name: Marketing
+  m_EditorClassIdentifier: 
+  title: Marketing
+  mainSprite: {fileID: 21300000, guid: b98130b1e13b0af4b91c874d4d231047, type: 3}
+  description: Increase base value of blop by $10
+  manaCost: 2
+  myType: 10
+  myBase: 3
+  once: 0
