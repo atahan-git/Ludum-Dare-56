@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="422ce223-5516-4d88-b6cd-b5c41afbfd9a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CreatureScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CreatureScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameMaster.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-Balanced-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-Balanced-Renderer.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprite Shadow.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprite Shadow.shadergraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +97,7 @@
       <workItem from="1728079205504" duration="20435000" />
       <workItem from="1728148536441" duration="20615000" />
       <workItem from="1728178166736" duration="21482000" />
-      <workItem from="1728325044342" duration="691000" />
+      <workItem from="1728325044342" duration="1616000" />
     </task>
     <servers />
   </component>

@@ -561,9 +561,10 @@ public class PlayerInteractor : MonoBehaviour {
                 for (int i = 0; i < allCreatures.Length; i++) {
                     var blop = allCreatures[i];
                     if (blop.GetVisualHungerLevel() >= 3) {
-                        
-                        GameMaster.s.money += blop.blopSellPrice;
-                        Instantiate(blop.blopSoldEffect, blop.transform.position, Quaternion.identity).GetComponent<SellEffect>().SetUp(blop.blopSellPrice);
+
+                        var price = Mathf.CeilToInt(blop.blopSellPrice * blop.myMultiplier);
+                        GameMaster.s.money += price;
+                        Instantiate(blop.blopSoldEffect, blop.transform.position, Quaternion.identity).GetComponent<SellEffect>().SetUp(price);
                     }
                 }
                 break;
