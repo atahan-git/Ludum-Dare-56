@@ -21,4 +21,4 @@ MonoBehaviour:
   manaCost: 1
   myType: 24
   myBase: 2
-  once: 0
+  once: 1

@@ -27,7 +27,7 @@ public class ShopCard : MonoBehaviour {
 		myCard.transform.localRotation = Quaternion.Euler(-90,0,0);
 		myCard.transform.localScale = Vector3.one * 120;
 
-		costText.text = $"{_cost}";
+		costText.text = $"${_cost}";
 	}
 
 	public void BuyCard() {
@@ -37,6 +37,7 @@ public class ShopCard : MonoBehaviour {
 			MerchantBlop.s.NotEnoughMoney();
 			return;
 		}
+		MerchantBlop.s.BeHappy();
 
 		myButton.interactable = false;
 		myCard.SetActive(false);

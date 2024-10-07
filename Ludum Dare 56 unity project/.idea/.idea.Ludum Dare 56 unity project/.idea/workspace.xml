@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="422ce223-5516-4d88-b6cd-b5c41afbfd9a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ludum Dare 56 unity project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayerInteractor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CreatureScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CreatureScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MarketController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MarketController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Create Cat.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Cards/Create Cat.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Cards/Transmute.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Cards/Transmute.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +104,7 @@
       <workItem from="1728079205504" duration="20435000" />
       <workItem from="1728148536441" duration="20615000" />
       <workItem from="1728178166736" duration="21482000" />
-      <workItem from="1728325044342" duration="1616000" />
+      <workItem from="1728325044342" duration="3347000" />
     </task>
     <servers />
   </component>
@@ -126,10 +133,10 @@
           <line>34</line>
           <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="34" containingFunctionPresentation="method 'BuyCard'">
             <startOffsets>
-              <option value="793" />
+              <option value="794" />
             </startOffsets>
             <endOffsets>
-              <option value="821" />
+              <option value="822" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />
@@ -139,49 +146,49 @@
           <line>36</line>
           <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="36" containingFunctionPresentation="method 'BuyCard'">
             <startOffsets>
-              <option value="836" />
+              <option value="837" />
             </startOffsets>
             <endOffsets>
-              <option value="868" />
+              <option value="869" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
-          <line>40</line>
+          <line>41</line>
           <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="40" containingFunctionPresentation="method 'BuyCard'">
             <startOffsets>
-              <option value="887" />
+              <option value="916" />
             </startOffsets>
             <endOffsets>
-              <option value="917" />
+              <option value="946" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
-          <line>42</line>
+          <line>43</line>
           <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="42" containingFunctionPresentation="method 'BuyCard'">
             <startOffsets>
-              <option value="947" />
+              <option value="976" />
             </startOffsets>
             <endOffsets>
-              <option value="984" />
+              <option value="1013" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/ShopCard.cs</url>
-          <line>44</line>
+          <line>45</line>
           <properties documentPath="D:\_Unity\2024\Ludum-dare-56\Ludum Dare 56 unity project\Assets\ShopCard.cs" initialLine="44" containingFunctionPresentation="method 'BuyCard'">
             <startOffsets>
-              <option value="990" />
+              <option value="1019" />
             </startOffsets>
             <endOffsets>
-              <option value="1025" />
+              <option value="1054" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />

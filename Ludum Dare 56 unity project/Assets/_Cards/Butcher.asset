@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Butcher
   mainSprite: {fileID: 21300000, guid: 35023a3c0b04f0242865626d6f334907, type: 3}
-  description: Create 3 food with <color=green>Multiplier</color>. This blop dies
+  description: Create 3Xblopsize food. This blop dies
   manaCost: 2
   myType: 6
   myBase: 0

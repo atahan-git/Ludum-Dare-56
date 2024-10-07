@@ -92,12 +92,13 @@ public class MarketController : MonoBehaviour {
     }
 
     public void BuyRefreshMarket() {
-        if (GameMaster.s.money >= upgradeCost) {
-            GameMaster.s.money -= upgradeCost;
+        if (GameMaster.s.money >= refreshCardCost) {
+            GameMaster.s.money -= refreshCardCost;
         } else {
             MerchantBlop.s.NotEnoughMoney();
             return;
         }
+        MerchantBlop.s.BeHappy();
         
         refreshedThisNight += 1;
         RefreshMarket(true);
@@ -110,6 +111,7 @@ public class MarketController : MonoBehaviour {
             MerchantBlop.s.NotEnoughMoney();
             return;
         }
+        MerchantBlop.s.BeHappy();
         
         Shuffle(legalShopCards);
 

@@ -129,6 +129,11 @@ public class GameMaster : MonoBehaviour {
         for (int i = 0; i < allCreatures.Length; i++) {
             allCreatures[i].SetSleepState(true);
         }
+        
+        var allFood = FindObjectsOfType<FoodScript>();
+        for (int i = 0; i < allFood.Length; i++) {
+            Destroy(allFood[i].gameObject);
+        }
     }
 
     public void NextDay() {

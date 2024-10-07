@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Transmute
   mainSprite: {fileID: 21300000, guid: 3843155966b44564c8f044db6353e682, type: 3}
-  description: Convert this blop to another blop of the same size
+  description: Convert this blop to another blop of size 1.
   manaCost: 3
   myType: 30
   myBase: 2

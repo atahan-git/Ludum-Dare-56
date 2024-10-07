@@ -345,7 +345,7 @@ public class CreatureScript : MonoBehaviour {
             }
             case FoodScript.FoodType.butcher: {
                 GameMaster.s.blobsDied += 1;
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 3*size; i++) {
                     Instantiate(PlayerInteractor.s.blopChunksToken, transform.position+Vector3.up*((i+1)*0.05f), Quaternion.identity);
                 }
                 Instantiate(deathEffect, transform.position, Quaternion.identity);
