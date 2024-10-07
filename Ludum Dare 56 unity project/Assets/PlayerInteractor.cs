@@ -412,6 +412,7 @@ public class PlayerInteractor : MonoBehaviour {
         if (removeNextCard || info.once) { //remove card
             Instantiate(removeCardEffect, card.transform.position, card.transform.rotation);
             Destroy(card.gameObject);
+            removeNextCard = false;
         } else { // put it in discard
             StartCoroutine(_CardAnimGoToDiscard(card.transform));
             discard.Add(info);

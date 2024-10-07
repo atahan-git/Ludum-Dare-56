@@ -337,8 +337,9 @@ public class CreatureScript : MonoBehaviour {
             }
             case FoodScript.FoodType.sell: {
                 GameMaster.s.blobsSold += 1;
-                GameMaster.s.money += blopSellPrice;
-                Instantiate(blopSoldEffect, transform.position, Quaternion.identity).GetComponent<SellEffect>().SetUp(blopSellPrice);
+                var price = Mathf.CeilToInt(blopSellPrice * myMultiplier);
+                GameMaster.s.money += price;
+                Instantiate(blopSoldEffect, transform.position, Quaternion.identity).GetComponent<SellEffect>().SetUp(price);
                 Destroy(gameObject);
                 break;
             }
@@ -531,6 +532,10 @@ public class CreatureScript : MonoBehaviour {
     
     public void SawFood(FoodScript foodScript) {
         if (!enabled) {
+            return;
+        }
+
+        if (!(state == State.chilling || state == State.walking)) {
             return;
         }
         

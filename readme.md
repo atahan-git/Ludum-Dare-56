@@ -1,30 +1,45 @@
-Atahan's Ludum Dare 56 entry!
+Atahan's Ludum Dare 56 entry! https://ldjam.com/events/ludum-dare/56/blob-farmer
 
-Play on itch (web + windows) [todo add link]
+Play on itch (web + windows) https://atahan-itchio.itch.io/blop-farmer
 
 # Game Instructions
 Your goal is to get $5000000 
+
 Play cards to tend to your blobs 
+
 Play cards to sell your blobs 
+
 Bigger blobs eat more food, but sell for a lot more! 
+
 Advance time to draw more cards, but also make blobs hunger 
+
 At night improve your deck with money 
-You cannot lose, but you can soft-lock yourself if you remove all your critical cards like `sell` or `manifest` 
+
+You cannot lose, but you can soft-lock yourself if you remove all your critical cards like `sell` or `manifest`
+ 
 Upgrade shop to unlock better cards, but also things get more expensive 
+
 Alternatively play like an idle game: Only click "advance time" every 5 minutes! :D 
 
 This game has NO SAVE FUNCTIONALITY. 
+
 Restart the game to try again!
 
 # Credits
 Game by: Atahan Ozturk
+
 Date: October 2024
 
 Made with Unity 2021.3.15f1 
+
 Aseprite for sprites 
-Probuilder for the environment 
+
+Probuilder for the environment
+ 
 A couple of free fonts used 
+
 All art made during the jam 
+
 Majority of code written during jam 
 
 Made for Ludum Dare 56 with the theme "Tiny Creatures" 
